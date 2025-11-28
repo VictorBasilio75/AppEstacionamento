@@ -7,44 +7,42 @@
     android:padding="32dp">
 
     <TextView
-        android:id="@+id/txtLogin"
+        android:id="@+id/txtHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="28sp"
+        android:text="Menu Principal"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
-    <EditText
-        android:id="@+id/Email"
+    <Button
+        android:id="@+id/BtnCadastrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@id/txtLogin"
+        android:text="Cadastrar Carro"
+        app:layout_constraintTop_toBottomOf="@id/txtHome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"/>
 
-    <EditText
-        android:id="@+id/Senha"
+    <Button
+        android:id="@+id/BtnLista"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/Email"
+        android:text="Lista de Carros"
+        app:layout_constraintTop_toBottomOf="@id/BtnCadastrar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"/>
 
     <Button
-        android:id="@+id/BotaoEntrar"
+        android:id="@+id/BtnCadastrarUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Entrar"
-        app:layout_constraintTop_toBottomOf="@id/Senha"
+        android:text="Cadastrar Usuário"
+        app:layout_constraintTop_toBottomOf="@id/BtnLista"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

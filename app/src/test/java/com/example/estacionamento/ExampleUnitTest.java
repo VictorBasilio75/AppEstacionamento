@@ -1,4 +1,4 @@
-package com.example.estacionamentocarros;
+package com.example.estacionamento;
 
 import org.junit.Test;
 

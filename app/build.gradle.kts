@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.estacionamentocarros"
+    namespace = "com.example.estacionamento"
     compileSdk = 36
 
     defaultConfig {
@@ -26,14 +26,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
 dependencies {
 
     implementation(libs.appcompat)
+    implementation("com.android.volley:volley:1.2.1")
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
