@@ -84,14 +84,56 @@ public class CadastroCarroActivity extends AppCompatActivity {
             );
         });
 
-        // EDITAR (A implementar)
         btnEditar.setOnClickListener(v -> {
-            Toast.makeText(this, "Implementar PUT /api/cars/{id}", Toast.LENGTH_SHORT).show();
+
+            if (editCarId == null) {
+                Toast.makeText(this, "Nenhum carro selecionado para edição!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String userId = edtUserId.getText().toString().trim();
+            String model = edtModel.getText().toString().trim();
+            String brand = edtBrand.getText().toString().trim();
+
+            if (model.isEmpty() || brand.isEmpty() || userId.isEmpty()) {
+                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            controller.editarCarro(
+                    userId,
+                    editCarId,
+                    brand,
+                    model,
+                    () -> runOnUiThread(() -> {
+                        Toast.makeText(this, "Carro atualizado!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }),
+                    erro -> runOnUiThread(() ->
+                            Toast.makeText(this, erro, Toast.LENGTH_LONG).show()
+                    )
+            );
         });
 
-        // EXCLUIR (A implementar)
+
         btnExcluir.setOnClickListener(v -> {
-            Toast.makeText(this, "Implementar DELETE /api/cars/{id}", Toast.LENGTH_SHORT).show();
+
+            if (editCarId == null) {
+                Toast.makeText(this, "Nenhum carro selecionado para excluir!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            controller.excluirCarro(
+                    editCarId,
+                    () -> runOnUiThread(() -> {
+                        Toast.makeText(this, "Carro removido!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }),
+                    erro -> runOnUiThread(() ->
+                            Toast.makeText(this, erro, Toast.LENGTH_LONG).show()
+                    )
+            );
         });
+
     }
 }

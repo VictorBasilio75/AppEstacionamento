@@ -12,7 +12,9 @@
         android:label="Estacionamento"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.EstacionamentoCarros">
+
 
         <!-- Splash é a tela inicial -->
         <activity
@@ -32,6 +34,8 @@
         <activity android:name=".view.CarrosListActivity" android:exported="false" />
         <activity android:name=".view.CadastroCarroActivity" android:exported="false" />]
         <activity android:name=".view.CadastroUsuarioActivity"></activity>
+        <activity android:name=".view.DeleteCarActivity"></activity>
+        <activity android:name=".view.EditCarroActivity"></activity>
 
     </application>
 

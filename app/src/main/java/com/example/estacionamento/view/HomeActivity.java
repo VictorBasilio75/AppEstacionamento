@@ -10,7 +10,7 @@ import com.example.estacionamento.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button BtnCadastrar, BtnLista, BtnCadastrarUsuario;
+    Button BtnCadastrar, BtnLista, BtnCadastrarUsuario, BtnDeleteCarro, BtnEditarCarro;
 
     @Override
     protected void onCreate(Bundle s) {
@@ -20,6 +20,8 @@ public class HomeActivity extends AppCompatActivity {
         BtnCadastrar = findViewById(R.id.BtnCadastrar);
         BtnLista = findViewById(R.id.BtnLista);
         BtnCadastrarUsuario = findViewById(R.id.BtnCadastrarUsuario);
+        BtnDeleteCarro = findViewById(R.id.BtnDeleteCarro);
+        BtnEditarCarro = findViewById(R.id.BtnEditarCarro);
 
         BtnCadastrar.setOnClickListener(v ->
                 startActivity(new Intent(this, CadastroCarroActivity.class))
@@ -32,5 +34,14 @@ public class HomeActivity extends AppCompatActivity {
         BtnCadastrarUsuario.setOnClickListener(v ->
                 startActivity(new Intent(this, CadastroUsuarioActivity.class))
         );
+
+        BtnDeleteCarro.setOnClickListener(v ->
+                startActivity(new Intent(this, DeleteCarActivity.class))
+        );
+
+        BtnEditarCarro.setOnClickListener(v ->
+                startActivity(new Intent(this, EditCarroActivity.class))
+        );
+
     }
 }

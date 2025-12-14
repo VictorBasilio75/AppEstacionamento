@@ -1,6 +1,9 @@
 package com.example.estacionamento.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,7 @@ public class CarrosListActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     CarroController controller;
+    Button BotaoVoltar;
 
     @Override
     protected void onCreate(Bundle s) {
@@ -37,6 +41,14 @@ public class CarrosListActivity extends AppCompatActivity {
             public void onError(String erro) {
                 Toast.makeText(CarrosListActivity.this, "Erro ao carregar: " + erro, Toast.LENGTH_LONG).show();
             }
+        });
+    }
+
+    public void BotaoVoltar(View view) {
+        BotaoVoltar = findViewById(R.id.BotaoVoltar);
+
+        BotaoVoltar.setOnClickListener(v ->{
+            startActivity(new Intent(this, HomeActivity.class));
         });
     }
 }

@@ -10,7 +10,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.example.estacionamento.model.Carro;
 import com.example.estacionamento.VolleySingleton;
@@ -38,8 +40,7 @@ public class CarroController {
             body.put("modelo", model);
             body.put("marca", brand);
 
-            // Endpoint correto baseado no backend:
-            // POST /cars/users/{userId}/cars
+            // Endpoint do backend
             String urlFinal = BASE_URL + "/users/" + userId + "/cars";
 
             JsonObjectRequest req = new JsonObjectRequest(
@@ -47,8 +48,17 @@ public class CarroController {
                     urlFinal,
                     body,
                     response -> onSuccess.run(),
-                    error -> onError.onError(extractError(error))
-            );
+                    error -> onError.onError("Erro ao cadastrar: " + extractError(error))
+
+            ) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Accept", "application/json");
+                    return headers;
+                }
+            };
 
             VolleySingleton.getInstance(ctx).addToRequestQueue(req);
 
@@ -56,6 +66,68 @@ public class CarroController {
             onError.onError("Erro ao montar JSON: " + e.getMessage());
         }
     }
+
+    // ========== EDITAR CARRO ==========
+    public void editarCarro(String userId, String carId, String modelo, String marca,
+                            final Runnable onSuccess,
+                            final ErrorCallback onError) {
+
+        try {
+            JSONObject body = new JSONObject();
+            body.put("modelo", modelo);
+            body.put("marca", marca);
+
+            String url = BASE_URL + "/users/" + userId + "/cars/" + carId;
+
+            JsonObjectRequest req = new JsonObjectRequest(
+                    Request.Method.PUT,
+                    url,
+                    body,
+                    response -> onSuccess.run(),
+                    error -> onError.onError("Erro ao editar: " + extractError(error))
+            ) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    return headers;
+                }
+            };
+
+            VolleySingleton.getInstance(ctx).addToRequestQueue(req);
+
+        } catch (Exception e) {
+            onError.onError("Erro ao montar JSON: " + e.getMessage());
+        }
+    }
+
+
+    public void excluirCarro(String carId,
+                             final Runnable onSuccess,
+                             final ErrorCallback onError) {
+
+        String urlFinal = BASE_URL + "/" + carId;
+
+        JsonObjectRequest req = new JsonObjectRequest(
+                Request.Method.DELETE,
+                urlFinal,
+                null,
+                response -> onSuccess.run(),
+                error -> onError.onError("Erro ao deletar: " + extractError(error))
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+        };
+
+        VolleySingleton.getInstance(ctx).addToRequestQueue(req);
+    }
+
+
+
 
 
 
@@ -104,16 +176,29 @@ public class CarroController {
 
 
     private String extractError(VolleyError error) {
-        try {
-            if (error.networkResponse != null && error.networkResponse.data != null) {
-                return new String(error.networkResponse.data);
-            }
-        } catch (Exception ignored) {}
+        if (error == null) {
+            log("ERRO DESCONHECIDO: error == null");
+            return "Erro nulo";
+        }
+
+        if (error.networkResponse != null && error.networkResponse.data != null) {
+            String msg = new String(error.networkResponse.data);
+            log("ERRO COM RESPOSTA: " + msg);
+            return msg;
+        }
+
+        log("ERRO SEM RESPOSTA: " + error.toString());
         return error.toString();
     }
+
 
     public interface CarrosCallback {
         void onSuccess(List<Carro> lista);
         void onError(String msg);
     }
+
+    private void log(String msg) {
+        android.util.Log.e("VOLLEY_DEBUG", msg);
+    }
+
 }

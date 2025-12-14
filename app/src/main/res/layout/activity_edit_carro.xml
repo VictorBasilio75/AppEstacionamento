@@ -7,65 +7,65 @@
     android:padding="32dp">
 
     <TextView
-        android:id="@+id/txtHome"
+        android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Menu Principal"
+        android:text="Editar Carro"
         android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <Button
-        android:id="@+id/BtnCadastrar"
+    <EditText
+        android:id="@+id/edtCarId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cadastrar Carro"
-        app:layout_constraintTop_toBottomOf="@id/txtHome"
+        android:hint="ID do Carro"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="24dp"/>
 
-    <Button
-        android:id="@+id/BtnLista"
+    <EditText
+        android:id="@+id/edtUserId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Lista de Carros"
-        app:layout_constraintTop_toBottomOf="@id/BtnCadastrar"
+        android:hint="ID do Usuário"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/edtCarId"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"/>
 
-    <Button
-        android:id="@+id/BtnCadastrarUsuario"
+    <EditText
+        android:id="@+id/edtModelo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cadastrar Usuário"
-        app:layout_constraintTop_toBottomOf="@id/BtnLista"
+        android:hint="Modelo"
+        app:layout_constraintTop_toBottomOf="@id/edtUserId"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"/>
 
-    <!-- 🔥 Novo botão para tela de DELETE -->
-    <Button
-        android:id="@+id/BtnDeleteCarro"
+    <EditText
+        android:id="@+id/edtMarca"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Excluir Carro"
-        app:layout_constraintTop_toBottomOf="@id/BtnCadastrarUsuario"
+        android:hint="Marca"
+        app:layout_constraintTop_toBottomOf="@id/edtModelo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"/>
 
     <Button
-        android:id="@+id/BtnEditarCarro"
+        android:id="@+id/btnEditarCarro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Editar Carro"
-        app:layout_constraintTop_toBottomOf="@id/BtnDeleteCarro"
+        android:text="Salvar Alterações"
+        app:layout_constraintTop_toBottomOf="@id/edtMarca"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
-
+        android:layout_marginTop="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
